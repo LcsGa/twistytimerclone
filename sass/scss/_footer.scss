@@ -1,0 +1,14 @@
+footer {
+  @include y-centered;
+  @include window;
+  color: rgba(0, 0, 0, 0.3);
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  justify-content: space-around;
+  padding: 1rem 0;
+  width: 100%;
+  .selected {
+    color: $red;
+  }
+}

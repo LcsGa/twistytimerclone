@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/67cd12d136.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./sass/scss/style.css" />
+    <title>Twisty timer clone</title>
+  </head>
+  <body>
+    <div id="app-container">
+      <header>
+        <i class="fas fa-cog"></i>
+        <div id="game-mode">
+          <select id="select-game-mode">
+            <option value="3x3">Cube 3x3</option>
+          </select>
+          <p id="name">normal</p>
+        </div>
+        <i class="fas fa-shapes"></i>
+      </header>
+      <main>
+        <article id="combination-article">
+          <section id="combination">
+            <p></p>
+          </section>
+          <nav>
+            <i class="fas fa-plus-circle"></i>
+            <i class="fas fa-pencil-alt"></i>
+            <i class="fas fa-sync-alt"></i>
+          </nav>
+        </article>
+        <article id="timer"><span>0</span>.00</article>
+        <article id="data">
+          <section>
+            <p>Ecart-type : 1.41</p>
+            <p>Moyenne : 11.10</p>
+            <p>Meilleur : 4.90</p>
+            <p>Total : 14 766</p>
+          </section>
+          <section id="graphic-combination">
+            <div id="top" class="figure">
+              <div class="square L0C0 red"></div>
+              <div class="square L0C1 red"></div>
+              <div class="square L0C2 red"></div>
+              <div class="square L1C0 red"></div>
+              <div class="square L1C1 red"></div>
+              <div class="square L1C2 red"></div>
+              <div class="square L2C0 red"></div>
+              <div class="square L2C1 red"></div>
+              <div class="square L2C2 red"></div>
+            </div>
+            <div id="left" class="figure">
+              <div class="square L0C0 blue"></div>
+              <div class="square L0C1 blue"></div>
+              <div class="square L0C2 blue"></div>
+              <div class="square L1C0 blue"></div>
+              <div class="square L1C1 blue"></div>
+              <div class="square L1C2 blue"></div>
+              <div class="square L2C0 blue"></div>
+              <div class="square L2C1 blue"></div>
+              <div class="square L2C2 blue"></div>
+            </div>
+            <div id="front" class="figure">
+              <div class="square L0C0 white"></div>
+              <div class="square L0C1 white"></div>
+              <div class="square L0C2 white"></div>
+              <div class="square L1C0 white"></div>
+              <div class="square L1C1 white"></div>
+              <div class="square L1C2 white"></div>
+              <div class="square L2C0 white"></div>
+              <div class="square L2C1 white"></div>
+              <div class="square L2C2 white"></div>
+            </div>
+            <div id="right" class="figure">
+              <div class="square L0C0 green"></div>
+              <div class="square L0C1 green"></div>
+              <div class="square L0C2 green"></div>
+              <div class="square L1C0 green"></div>
+              <div class="square L1C1 green"></div>
+              <div class="square L1C2 green"></div>
+              <div class="square L2C0 green"></div>
+              <div class="square L2C1 green"></div>
+              <div class="square L2C2 green"></div>
+            </div>
+            <div id="back" class="figure">
+              <div class="square L0C0 yellow"></div>
+              <div class="square L0C1 yellow"></div>
+              <div class="square L0C2 yellow"></div>
+              <div class="square L1C0 yellow"></div>
+              <div class="square L1C1 yellow"></div>
+              <div class="square L1C2 yellow"></div>
+              <div class="square L2C0 yellow"></div>
+              <div class="square L2C1 yellow"></div>
+              <div class="square L2C2 yellow"></div>
+            </div>
+            <div id="bottom" class="figure">
+              <div class="square L0C0 orange"></div>
+              <div class="square L0C1 orange"></div>
+              <div class="square L0C2 orange"></div>
+              <div class="square L1C0 orange"></div>
+              <div class="square L1C1 orange"></div>
+              <div class="square L1C2 orange"></div>
+              <div class="square L2C0 orange"></div>
+              <div class="square L2C1 orange"></div>
+              <div class="square L2C2 orange"></div>
+            </div>
+          </section>
+          <section>
+            <p>Ao5 : 11.07</p>
+            <p>Ao12 : 10.28</p>
+            <p>Ao50 : 10.64</p>
+            <p>Ao100 : 10.69</p>
+          </section>
+        </article>
+      </main>
+      <footer>
+        <i class="fas fa-stopwatch selected"></i>
+        <i class="fas fa-list-alt"></i>
+        <i class="fas fa-chart-bar"></i>
+      </footer>
+    </div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

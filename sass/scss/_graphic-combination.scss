@@ -1,0 +1,42 @@
+#graphic-combination {
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(4, 1fr);
+  gap: 1px;
+  .figure {
+    background: black;
+    height: 30px;
+    width: 30px;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid black;
+  }
+  #top {
+    grid-column: 2/3;
+  }
+  #left {
+    grid-column: 1/2;
+  }
+  #bottom {
+    grid-column: 2/3;
+  }
+}
+
+.white {
+  background: white;
+}
+.yellow {
+  background: yellow;
+}
+.blue {
+  background: blue;
+}
+.green {
+  background: green;
+}
+.red {
+  background: red;
+}
+.orange {
+  background: orange;
+}

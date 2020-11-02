@@ -1,0 +1,38 @@
+@import "graphic-combination";
+
+main {
+  @include x-centered-y-space-between-flexed-column;
+  flex-grow: 1;
+  padding: 1rem 2rem;
+  #combination-article {
+    @include flexed-column;
+    align-items: flex-end;
+    #combination {
+      text-align: center;
+    }
+    nav {
+      @include y-centered-x-space-between;
+      margin-top: 1rem;
+      width: 130px;
+    }
+  }
+  #timer {
+    font-size: 4rem;
+    font-weight: bold;
+    span {
+      font-size: 6rem;
+    }
+  }
+  #data {
+    @include y-centered-x-space-between;
+    width: 100%;
+    section {
+      &:nth-child(2n + 1) {
+        font-size: 1rem;
+      }
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}
