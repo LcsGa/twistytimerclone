@@ -5,10 +5,10 @@ const frontFigure = document.querySelectorAll("#front .square");
 const rightFigure = document.querySelectorAll("#right .square");
 const backFigure = document.querySelectorAll("#back .square");
 const bottomFigure = document.querySelectorAll("#bottom .square");
+const reloadMix = document.querySelector(".fa-sync-alt");
 
 class Cube {
   constructor() {
-    this.generatedCombination = [];
     this.cube = {
       top: [
         ["red", "red", "red"],
@@ -52,6 +52,7 @@ class Cube {
   }
 
   generateCombination() {
+    this.generatedCombination = [];
     for (let i = 0; i < Math.floor(18 + Math.random() * 6); i++) {
       switch (Math.floor(Math.random() * 6)) {
         case 0: {
@@ -303,3 +304,8 @@ window.onload = () => {
   cube.generateCombination();
   combination.innerHTML = cube.generatedCombination.join(" ");
 };
+
+reloadMix.addEventListener("click", () => {
+  cube.generateCombination();
+  combination.innerHTML = cube.generatedCombination.join(" ");
+});
