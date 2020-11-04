@@ -12,32 +12,32 @@ class Cube {
     this.cube = {
       top: [
         ["white", "white", "white"],
-        ["white", "white", "white"],
+        ["white", "white", "red"],
         ["white", "white", "white"],
       ],
       left: [
         ["orange", "orange", "orange"],
-        ["orange", "orange", "orange"],
+        ["orange", "orange", "red"],
         ["orange", "orange", "orange"],
       ],
       front: [
         ["green", "green", "green"],
-        ["green", "green", "green"],
+        ["green", "green", "red"],
         ["green", "green", "green"],
       ],
       right: [
         ["red", "red", "red"],
-        ["red", "red", "red"],
+        ["red", "red", "white"],
         ["red", "red", "red"],
       ],
       back: [
         ["blue", "blue", "blue"],
-        ["blue", "blue", "blue"],
+        ["blue", "blue", "red"],
         ["blue", "blue", "blue"],
       ],
       bottom: [
         ["yellow", "yellow", "yellow"],
-        ["yellow", "yellow", "yellow"],
+        ["yellow", "yellow", "red"],
         ["yellow", "yellow", "yellow"],
       ],
     };
@@ -211,6 +211,34 @@ class Cube {
 
   // Function that has to be called
   applyFigurePerimeterRotationChangesWithinCubeObject(rotatedFigure, move) {
+    // let rotatedFigure;
+    // switch (move) {
+    //   case "U": {
+    //     rotatedFigure = this.cube.top;
+    //     break;
+    //   }
+    //   case "D": {
+    //     rotatedFigure = this.cube.bottom;
+    //     break;
+    //   }
+    //   case "L": {
+    //     rotatedFigure = this.cube.left;
+    //     break;
+    //   }
+    //   case "R": {
+    //     rotatedFigure = this.cube.right;
+    //     break;
+    //   }
+    //   case "F": {
+    //     rotatedFigure = this.cube.front;
+    //     break;
+    //   }
+    //   case "B": {
+    //     rotatedFigure = this.cube.back;
+    //     break;
+    //   }
+    // }
+    console.log(this.applyFigureRotation(move).figurePerimeter);
     rotatedFigure[0][0] = this.applyFigureRotation(move).figurePerimeter[0];
     rotatedFigure[0][1] = this.applyFigureRotation(move).figurePerimeter[1];
     rotatedFigure[0][2] = this.applyFigureRotation(move).figurePerimeter[2];
@@ -302,55 +330,54 @@ class Cube {
     this.generateTextualCombination();
     for (const move of this.generatedCombination) {
       // TODO add the possibility nb of repetitons
-      switch (
-        move[0] // ! [0] is only useful when there are 2 and '
-      ) {
+      // ! [0] is only useful when there are 2 and '
+      switch (move) {
         case "U": {
           this.applyFigurePerimeterRotationChangesWithinCubeObject(
             this.cube.top,
             "U"
           );
-          this.applyLinePerimeterRotationChangesWithinCubeObject("U");
+          // this.applyLinePerimeterRotationChangesWithinCubeObject("U");
           break;
         }
         case "D": {
           this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.top,
+            this.cube.bottom,
             "D"
           );
-          this.applyLinePerimeterRotationChangesWithinCubeObject("D");
+          // this.applyLinePerimeterRotationChangesWithinCubeObject("D");
           break;
         }
         case "L": {
           this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.top,
+            this.cube.left,
             "L"
           );
-          this.applyLinePerimeterRotationChangesWithinCubeObject("L");
+          // this.applyLinePerimeterRotationChangesWithinCubeObject("L");
           break;
         }
         case "R": {
           this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.top,
+            this.cube.right,
             "R"
           );
-          this.applyLinePerimeterRotationChangesWithinCubeObject("R");
+          // this.applyLinePerimeterRotationChangesWithinCubeObject("R");
           break;
         }
         case "F": {
           this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.top,
+            this.cube.front,
             "F"
           );
-          this.applyLinePerimeterRotationChangesWithinCubeObject("F");
+          // this.applyLinePerimeterRotationChangesWithinCubeObject("F");
           break;
         }
         case "B": {
           this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.top,
+            this.cube.back,
             "B"
           );
-          this.applyLinePerimeterRotationChangesWithinCubeObject("B");
+          // this.applyLinePerimeterRotationChangesWithinCubeObject("B");
           break;
         }
       }
@@ -358,7 +385,7 @@ class Cube {
     // this.applyGraphicCombination();
   }
 
-  // Function that as to be called with arguments to work
+  // Function that as to be called with arguments to work : apply css classes on html elements for graphical render
   applyCubeObjectChangesWithinHTML(graphicFigure, classFigure) {
     let [line, column] = [0, 0];
     for (const square of graphicFigure) {
@@ -377,9 +404,9 @@ class Cube {
 
   // Application of the previous function
   applyGraphicModifications() {
-    // if (this.generatedCombination !== undefined) {
-    // this.applyChangesWithinCubeObject();
-    // }
+    if (this.generatedCombination !== undefined) {
+      this.applyChangesWithinCubeObject();
+    }
     this.applyCubeObjectChangesWithinHTML(topFigure, this.cube.top);
     this.applyCubeObjectChangesWithinHTML(leftFigure, this.cube.left);
     this.applyCubeObjectChangesWithinHTML(frontFigure, this.cube.front);
@@ -397,6 +424,8 @@ window.onload = () => {
 
 reloadBtn.addEventListener("click", () => {
   cube.generateTextualCombination();
+  console.log(cube.generatedCombination);
   cube.applyChangesWithinCubeObject();
+  console.log(cube.cube);
   combination.innerHTML = cube.generatedCombination.join(" ");
 });
