@@ -180,96 +180,110 @@ class Cube {
   }
 
   // returns a new object with the changes applied on every move : {figurePerimeter: [], linePerimeter: []}
+  // * 100% ok !
   applyFigureRotation(move) {
+    const figurePerimeter = this.getFigurePerimeter(move);
+    const linePerimeter = this.getLinePerimeter(move);
     switch (move) {
       case "U":
       case "R":
       case "F": {
-        return {
-          figurePerimeter: this.getFigurePerimeter(move).unshift(
-            this.getFigurePerimeter(move).splice(6, 2)
-          ),
-          linePerimeter: this.getLinePerimeter(move).push(
-            this.getLinePerimeter(move).splice(0, 1)
-          ),
-        };
+        for (let i = 0; i < 2; i++) {
+          figurePerimeter.unshift(figurePerimeter.pop());
+        }
+        linePerimeter.unshift(linePerimeter.pop());
+        break;
       }
       case "D":
       case "L":
       case "B": {
-        return {
-          figurePerimeter: this.getFigurePerimeter(move).push(
-            this.getFigurePerimeter(move).splice(0, 2)
-          ),
-          linePerimeter: this.getLinePerimeter(move).unshift(
-            this.getLinePerimeter(move).splice(3, 1)
-          ),
-        };
+        for (let i = 0; i < 2; i++) {
+          figurePerimeter.push(figurePerimeter.shift());
+        }
+        linePerimeter.push(linePerimeter.shift());
+        break;
       }
     }
+    return {
+      figurePerimeter: figurePerimeter,
+      linePerimeter: linePerimeter,
+    };
   }
 
-  // Function that has to be called
-  applyFigurePerimeterRotationChangesWithinCubeObject(rotatedFigure, move) {
-    // let rotatedFigure;
-    // switch (move) {
-    //   case "U": {
-    //     rotatedFigure = this.cube.top;
-    //     break;
-    //   }
-    //   case "D": {
-    //     rotatedFigure = this.cube.bottom;
-    //     break;
-    //   }
-    //   case "L": {
-    //     rotatedFigure = this.cube.left;
-    //     break;
-    //   }
-    //   case "R": {
-    //     rotatedFigure = this.cube.right;
-    //     break;
-    //   }
-    //   case "F": {
-    //     rotatedFigure = this.cube.front;
-    //     break;
-    //   }
-    //   case "B": {
-    //     rotatedFigure = this.cube.back;
-    //     break;
-    //   }
-    // }
-    console.log(this.applyFigureRotation(move).figurePerimeter);
-    rotatedFigure[0][0] = this.applyFigureRotation(move).figurePerimeter[0];
-    rotatedFigure[0][1] = this.applyFigureRotation(move).figurePerimeter[1];
-    rotatedFigure[0][2] = this.applyFigureRotation(move).figurePerimeter[2];
-    rotatedFigure[1][2] = this.applyFigureRotation(move).figurePerimeter[3];
-    rotatedFigure[2][2] = this.applyFigureRotation(move).figurePerimeter[4];
-    rotatedFigure[2][1] = this.applyFigureRotation(move).figurePerimeter[5];
-    rotatedFigure[2][0] = this.applyFigureRotation(move).figurePerimeter[6];
-    rotatedFigure[1][0] = this.applyFigureRotation(move).figurePerimeter[7];
+  // Function that has to be called (figure perimeter)
+  applyFigurePerimeterRotationChangesWithinCubeObject(move) {
+    let figure;
+    switch (move) {
+      case "U": {
+        figure = this.cube.top;
+        break;
+      }
+      case "D": {
+        figure = this.cube.bottom;
+        break;
+      }
+      case "L": {
+        figure = this.cube.left;
+        break;
+      }
+      case "R": {
+        figure = this.cube.right;
+        break;
+      }
+      case "F": {
+        figure = this.cube.front;
+        break;
+      }
+      case "B": {
+        figure = this.cube.back;
+        break;
+      }
+    }
+    const rotatedFigure = this.applyFigureRotation(move);
+    figure[0][0] = rotatedFigure.figurePerimeter[0];
+    figure[0][1] = rotatedFigure.figurePerimeter[1];
+    figure[0][2] = rotatedFigure.figurePerimeter[2];
+    figure[1][2] = rotatedFigure.figurePerimeter[3];
+    figure[2][2] = rotatedFigure.figurePerimeter[4];
+    figure[2][1] = rotatedFigure.figurePerimeter[5];
+    figure[2][0] = rotatedFigure.figurePerimeter[6];
+    figure[1][0] = rotatedFigure.figurePerimeter[7];
   }
 
-  // Function that has to be called
+  // Function that has to be called (line perimeter)
   applyLinePerimeterRotationChangesWithinCubeObject(move) {
     switch (move) {
+      // * Ok !!
       case "U": {
         [
           this.cube.left[0],
           this.cube.front[0],
           this.cube.right[0],
           this.cube.back[0],
-        ] = [this.applyFigureRotation("U").linePerimeter];
+        ] = [
+          this.applyFigureRotation("U").linePerimeter[0],
+          this.applyFigureRotation("U").linePerimeter[1],
+          this.applyFigureRotation("U").linePerimeter[2],
+          this.applyFigureRotation("U").linePerimeter[3],
+        ];
         break;
       }
+      // * Ok !!
       case "D": {
         [
           this.cube.left[2],
           this.cube.front[2],
           this.cube.right[2],
           this.cube.back[2],
-        ] = [this.applyFigureRotation("D").linePerimeter];
+        ] = [
+          this.applyFigureRotation("D").linePerimeter[0],
+          this.applyFigureRotation("D").linePerimeter[1],
+          this.applyFigureRotation("D").linePerimeter[2],
+          this.applyFigureRotation("D").linePerimeter[3],
+        ];
         break;
       }
+      // * Ok !!
       case "L": {
         [
           [
@@ -280,9 +294,15 @@ class Cube {
           [this.cube.front[0][0], this.cube.front[1][0], this.cube.front[2][0]],
           [this.cube.top[0][0], this.cube.top[1][0], this.cube.top[2][0]],
           [this.cube.back[2][2], this.cube.back[1][2], this.cube.back[0][2]],
-        ] = [this.applyFigureRotation("L").linePerimeter];
+        ] = [
+          this.applyFigureRotation("L").linePerimeter[0],
+          this.applyFigureRotation("L").linePerimeter[1],
+          this.applyFigureRotation("L").linePerimeter[2],
+          this.applyFigureRotation("L").linePerimeter[3],
+        ];
         break;
       }
+      // * Ok !!
       case "R": {
         [
           [
@@ -293,33 +313,59 @@ class Cube {
           [this.cube.front[0][2], this.cube.front[1][2], this.cube.front[2][2]],
           [this.cube.top[0][2], this.cube.top[1][2], this.cube.top[2][2]],
           [this.cube.back[2][0], this.cube.back[1][0], this.cube.back[0][0]],
-        ] = [this.applyFigureRotation("R").linePerimeter];
+        ] = [
+          this.applyFigureRotation("R").linePerimeter[0],
+          this.applyFigureRotation("R").linePerimeter[1],
+          this.applyFigureRotation("R").linePerimeter[2],
+          this.applyFigureRotation("R").linePerimeter[3],
+        ];
         break;
       }
+      // ! bug de nombre de tour ??? une fois un seul, puis après 2
       case "F": {
         [
           [this.cube.left[2][2], this.cube.left[1][2], this.cube.left[0][2]],
-          this.cube.top[2],
+          [this.cube.top[2][0], this.cube.top[2][1], this.cube.top[2][2]],
           [this.cube.right[0][0], this.cube.right[1][0], this.cube.right[2][0]],
           [
             this.cube.bottom[0][2],
             this.cube.bottom[0][1],
             this.cube.bottom[0][0],
           ],
-        ] = [this.applyFigureRotation("F").linePerimeter];
+        ] = [
+          this.applyFigureRotation("F").linePerimeter[0],
+          this.applyFigureRotation("F").linePerimeter[1],
+          this.applyFigureRotation("F").linePerimeter[2],
+          this.applyFigureRotation("F").linePerimeter[3],
+        ];
         break;
       }
       case "B": {
-        [
-          [this.cube.left[2][2], this.cube.left[1][2], this.cube.left[0][2]],
-          this.cube.top[2],
-          [this.cube.right[0][2], this.cube.right[1][2], this.cube.right[2][2]],
-          [
-            this.cube.bottom[2][2],
-            this.cube.bottom[2][1],
-            this.cube.bottom[2][0],
-          ],
-        ] = [this.applyFigureRotation("B").linePerimeter];
+        // [
+        //   [this.cube.left[2][2], this.cube.left[1][2], this.cube.left[0][2]],
+        //   [this.cube.top[2][0], this.cube.top[2][1], this.cube.top[2][2]],
+        //   [this.cube.right[0][0], this.cube.right[1][0], this.cube.right[2][0]],
+        //   [
+        //     this.cube.bottom[0][2],
+        //     this.cube.bottom[0][1],
+        //     this.cube.bottom[0][0],
+        //   ],
+        // ] = [
+        //   this.applyFigureRotation("F").linePerimeter[0],
+        //   this.applyFigureRotation("F").linePerimeter[1],
+        //   this.applyFigureRotation("F").linePerimeter[2],
+        //   this.applyFigureRotation("F").linePerimeter[3],
+        // ];
+        //   [
+        //     [this.cube.left[2][2], this.cube.left[1][2], this.cube.left[0][2]],
+        //     this.cube.top[2],
+        //     [this.cube.right[0][2], this.cube.right[1][2], this.cube.right[2][2]],
+        //     [
+        //       this.cube.bottom[2][2],
+        //       this.cube.bottom[2][1],
+        //       this.cube.bottom[2][0],
+        //     ],
+        //   ] = [this.applyFigureRotation("B").linePerimeter];
         break;
       }
     }
@@ -332,51 +378,33 @@ class Cube {
       // TODO add the possibility nb of repetitons
       // ! [0] is only useful when there are 2 and '
       switch (move) {
-        case "U": {
-          this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.top,
-            "U"
-          );
-          // this.applyLinePerimeterRotationChangesWithinCubeObject("U");
-          break;
-        }
-        case "D": {
-          this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.bottom,
-            "D"
-          );
-          // this.applyLinePerimeterRotationChangesWithinCubeObject("D");
-          break;
-        }
+        // case "U": {
+        //   this.applyFigurePerimeterRotationChangesWithinCubeObject("U");
+        //   this.applyLinePerimeterRotationChangesWithinCubeObject("U");
+        //   break;
+        // }
+        // case "D": {
+        //   this.applyFigurePerimeterRotationChangesWithinCubeObject("D");
+        //   this.applyLinePerimeterRotationChangesWithinCubeObject("D");
+        //   break;
+        // }
         case "L": {
-          this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.left,
-            "L"
-          );
+          // this.applyFigurePerimeterRotationChangesWithinCubeObject("L");
           // this.applyLinePerimeterRotationChangesWithinCubeObject("L");
           break;
         }
         case "R": {
-          this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.right,
-            "R"
-          );
+          // this.applyFigurePerimeterRotationChangesWithinCubeObject("R");
           // this.applyLinePerimeterRotationChangesWithinCubeObject("R");
           break;
         }
         case "F": {
-          this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.front,
-            "F"
-          );
-          // this.applyLinePerimeterRotationChangesWithinCubeObject("F");
+          // this.applyFigurePerimeterRotationChangesWithinCubeObject("F");
+          this.applyLinePerimeterRotationChangesWithinCubeObject("F");
           break;
         }
         case "B": {
-          this.applyFigurePerimeterRotationChangesWithinCubeObject(
-            this.cube.back,
-            "B"
-          );
+          // this.applyFigurePerimeterRotationChangesWithinCubeObject("B");
           // this.applyLinePerimeterRotationChangesWithinCubeObject("B");
           break;
         }
@@ -402,9 +430,10 @@ class Cube {
     }
   }
 
-  // Application of the previous function
+  // Application of the previous function ==> Problem encoutered, see red mark below
   applyGraphicModifications() {
     if (this.generatedCombination !== undefined) {
+      /*console.log(this.generatedCombination);*/ //! retard de 1 génération;
       this.applyChangesWithinCubeObject();
     }
     this.applyCubeObjectChangesWithinHTML(topFigure, this.cube.top);
@@ -424,8 +453,8 @@ window.onload = () => {
 
 reloadBtn.addEventListener("click", () => {
   cube.generateTextualCombination();
-  console.log(cube.generatedCombination);
   cube.applyChangesWithinCubeObject();
+  // cube.applyGraphicModifications();
   console.log(cube.cube);
   combination.innerHTML = cube.generatedCombination.join(" ");
 });
