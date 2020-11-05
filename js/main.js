@@ -149,7 +149,8 @@ class Cube {
 
   generateTextualCombination() {
     this.generatedCombination = [];
-    for (let i = 0; i < Math.floor(18 + Math.random() * 6); i++) {
+    for (let i = 0; i < Math.ceil(18 + Math.random() * 6); i++) {
+      // for (let i = 0; i < 6; i++) {
       switch (Math.floor(Math.random() * 6)) {
         case 0: {
           this.generatedCombination.push("U");
@@ -355,6 +356,7 @@ class Cube {
   // The application of the two previous functions (Like commented before)
   applyChangesWithinCubeObject() {
     this.generateTextualCombination();
+    console.log(this.generatedCombination);
     for (const move of this.generatedCombination) {
       // TODO add the possibility nb of repetitons
       switch (move[0]) {
@@ -411,9 +413,6 @@ class Cube {
 
   // Application of the previous function ==> Problem encoutered, see red mark below
   applyGraphicModifications() {
-    if (this.generatedCombination !== undefined) {
-      this.applyChangesWithinCubeObject();
-    }
     this.applyCubeObjectChangesWithinHTML(topFigure, this.cube.top);
     this.applyCubeObjectChangesWithinHTML(leftFigure, this.cube.left);
     this.applyCubeObjectChangesWithinHTML(frontFigure, this.cube.front);
@@ -430,7 +429,6 @@ reloadBtn.addEventListener("click", () => {
   if (cube.generatedCombination !== undefined) {
     cube = new Cube();
   }
-  cube.generateTextualCombination();
   cube.applyChangesWithinCubeObject();
   cube.applyGraphicModifications();
   console.log(cube.cube);
