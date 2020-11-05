@@ -12,32 +12,32 @@ class Cube {
     this.cube = {
       top: [
         ["white", "white", "white"],
-        ["white", "white", "red"],
+        ["white", "white", "white"],
         ["white", "white", "white"],
       ],
       left: [
         ["orange", "orange", "orange"],
-        ["orange", "orange", "red"],
+        ["orange", "orange", "orange"],
         ["orange", "orange", "orange"],
       ],
       front: [
         ["green", "green", "green"],
-        ["green", "green", "red"],
+        ["green", "green", "green"],
         ["green", "green", "green"],
       ],
       right: [
         ["red", "red", "red"],
-        ["red", "red", "white"],
+        ["red", "red", "red"],
         ["red", "red", "red"],
       ],
       back: [
         ["blue", "blue", "blue"],
-        ["blue", "blue", "red"],
+        ["blue", "blue", "blue"],
         ["blue", "blue", "blue"],
       ],
       bottom: [
         ["yellow", "yellow", "yellow"],
-        ["yellow", "yellow", "red"],
+        ["yellow", "yellow", "yellow"],
         ["yellow", "yellow", "yellow"],
       ],
     };
@@ -180,29 +180,25 @@ class Cube {
   }
 
   // returns a new object with the changes applied on every move : {figurePerimeter: [], linePerimeter: []}
-  // * 100% ok !
   applyFigureRotation(move) {
     const figurePerimeter = this.getFigurePerimeter(move);
     const linePerimeter = this.getLinePerimeter(move);
     switch (move) {
       case "U":
-      case "R":
-      case "F": {
-        for (let i = 0; i < 2; i++) {
-          figurePerimeter.unshift(figurePerimeter.pop());
-        }
-        linePerimeter.unshift(linePerimeter.pop());
-        break;
-      }
-      case "D":
       case "L":
       case "B": {
-        for (let i = 0; i < 2; i++) {
-          figurePerimeter.push(figurePerimeter.shift());
-        }
         linePerimeter.push(linePerimeter.shift());
         break;
       }
+      case "D":
+      case "R":
+      case "F": {
+        linePerimeter.unshift(linePerimeter.pop());
+        break;
+      }
+    }
+    for (let i = 0; i < 2; i++) {
+      figurePerimeter.unshift(figurePerimeter.pop());
     }
     return {
       figurePerimeter: figurePerimeter,
@@ -253,7 +249,6 @@ class Cube {
   // Function that has to be called (line perimeter)
   applyLinePerimeterRotationChangesWithinCubeObject(move) {
     switch (move) {
-      // * Ok !!
       case "U": {
         [
           this.cube.left[0],
@@ -268,7 +263,6 @@ class Cube {
         ];
         break;
       }
-      // * Ok !!
       case "D": {
         [
           this.cube.left[2],
@@ -283,7 +277,6 @@ class Cube {
         ];
         break;
       }
-      // * Ok !!
       case "L": {
         [
           [
@@ -302,7 +295,6 @@ class Cube {
         ];
         break;
       }
-      // * Ok !!
       case "R": {
         [
           [
@@ -321,11 +313,10 @@ class Cube {
         ];
         break;
       }
-      // ! bug de nombre de tour ??? une fois un seul, puis après 2
       case "F": {
         [
           [this.cube.left[2][2], this.cube.left[1][2], this.cube.left[0][2]],
-          [this.cube.top[2][0], this.cube.top[2][1], this.cube.top[2][2]],
+          this.cube.top[2],
           [this.cube.right[0][0], this.cube.right[1][0], this.cube.right[2][0]],
           [
             this.cube.bottom[0][2],
@@ -341,31 +332,21 @@ class Cube {
         break;
       }
       case "B": {
-        // [
-        //   [this.cube.left[2][2], this.cube.left[1][2], this.cube.left[0][2]],
-        //   [this.cube.top[2][0], this.cube.top[2][1], this.cube.top[2][2]],
-        //   [this.cube.right[0][0], this.cube.right[1][0], this.cube.right[2][0]],
-        //   [
-        //     this.cube.bottom[0][2],
-        //     this.cube.bottom[0][1],
-        //     this.cube.bottom[0][0],
-        //   ],
-        // ] = [
-        //   this.applyFigureRotation("F").linePerimeter[0],
-        //   this.applyFigureRotation("F").linePerimeter[1],
-        //   this.applyFigureRotation("F").linePerimeter[2],
-        //   this.applyFigureRotation("F").linePerimeter[3],
-        // ];
-        //   [
-        //     [this.cube.left[2][2], this.cube.left[1][2], this.cube.left[0][2]],
-        //     this.cube.top[2],
-        //     [this.cube.right[0][2], this.cube.right[1][2], this.cube.right[2][2]],
-        //     [
-        //       this.cube.bottom[2][2],
-        //       this.cube.bottom[2][1],
-        //       this.cube.bottom[2][0],
-        //     ],
-        //   ] = [this.applyFigureRotation("B").linePerimeter];
+        [
+          [this.cube.left[2][0], this.cube.left[1][0], this.cube.left[0][0]],
+          this.cube.top[0],
+          [this.cube.right[0][2], this.cube.right[1][2], this.cube.right[2][2]],
+          [
+            this.cube.bottom[2][2],
+            this.cube.bottom[2][1],
+            this.cube.bottom[2][0],
+          ],
+        ] = [
+          this.applyFigureRotation("B").linePerimeter[0],
+          this.applyFigureRotation("B").linePerimeter[1],
+          this.applyFigureRotation("B").linePerimeter[2],
+          this.applyFigureRotation("B").linePerimeter[3],
+        ];
         break;
       }
     }
@@ -376,48 +357,46 @@ class Cube {
     this.generateTextualCombination();
     for (const move of this.generatedCombination) {
       // TODO add the possibility nb of repetitons
-      // ! [0] is only useful when there are 2 and '
-      switch (move) {
-        // case "U": {
-        //   this.applyFigurePerimeterRotationChangesWithinCubeObject("U");
-        //   this.applyLinePerimeterRotationChangesWithinCubeObject("U");
-        //   break;
-        // }
-        // case "D": {
-        //   this.applyFigurePerimeterRotationChangesWithinCubeObject("D");
-        //   this.applyLinePerimeterRotationChangesWithinCubeObject("D");
-        //   break;
-        // }
+      switch (move[0]) {
+        case "U": {
+          this.applyFigurePerimeterRotationChangesWithinCubeObject("U");
+          this.applyLinePerimeterRotationChangesWithinCubeObject("U");
+          break;
+        }
+        case "D": {
+          this.applyFigurePerimeterRotationChangesWithinCubeObject("D");
+          this.applyLinePerimeterRotationChangesWithinCubeObject("D");
+          break;
+        }
         case "L": {
-          // this.applyFigurePerimeterRotationChangesWithinCubeObject("L");
-          // this.applyLinePerimeterRotationChangesWithinCubeObject("L");
+          this.applyFigurePerimeterRotationChangesWithinCubeObject("L");
+          this.applyLinePerimeterRotationChangesWithinCubeObject("L");
           break;
         }
         case "R": {
-          // this.applyFigurePerimeterRotationChangesWithinCubeObject("R");
-          // this.applyLinePerimeterRotationChangesWithinCubeObject("R");
+          this.applyFigurePerimeterRotationChangesWithinCubeObject("R");
+          this.applyLinePerimeterRotationChangesWithinCubeObject("R");
           break;
         }
         case "F": {
-          // this.applyFigurePerimeterRotationChangesWithinCubeObject("F");
+          this.applyFigurePerimeterRotationChangesWithinCubeObject("F");
           this.applyLinePerimeterRotationChangesWithinCubeObject("F");
           break;
         }
         case "B": {
-          // this.applyFigurePerimeterRotationChangesWithinCubeObject("B");
-          // this.applyLinePerimeterRotationChangesWithinCubeObject("B");
+          this.applyFigurePerimeterRotationChangesWithinCubeObject("B");
+          this.applyLinePerimeterRotationChangesWithinCubeObject("B");
           break;
         }
       }
     }
-    // this.applyGraphicCombination();
   }
 
   // Function that as to be called with arguments to work : apply css classes on html elements for graphical render
   applyCubeObjectChangesWithinHTML(graphicFigure, classFigure) {
     let [line, column] = [0, 0];
     for (const square of graphicFigure) {
-      if (square.classList === 2) {
+      if (square.classList.length === 2) {
         square.classList.remove(square.classList[square.classList.length - 1]); // Remove the color on each square of a figure
       }
       square.classList.add(classFigure[line][column]); // Add the new color since the combination has been generated
@@ -433,7 +412,6 @@ class Cube {
   // Application of the previous function ==> Problem encoutered, see red mark below
   applyGraphicModifications() {
     if (this.generatedCombination !== undefined) {
-      /*console.log(this.generatedCombination);*/ //! retard de 1 génération;
       this.applyChangesWithinCubeObject();
     }
     this.applyCubeObjectChangesWithinHTML(topFigure, this.cube.top);
@@ -443,18 +421,18 @@ class Cube {
     this.applyCubeObjectChangesWithinHTML(backFigure, this.cube.back);
     this.applyCubeObjectChangesWithinHTML(bottomFigure, this.cube.bottom);
   }
-  // Terminé jusque là !!
 }
 
-const cube = new Cube();
-window.onload = () => {
-  cube.applyGraphicModifications();
-};
+let cube = new Cube();
+cube.applyGraphicModifications();
 
 reloadBtn.addEventListener("click", () => {
+  if (cube.generatedCombination !== undefined) {
+    cube = new Cube();
+  }
   cube.generateTextualCombination();
   cube.applyChangesWithinCubeObject();
-  // cube.applyGraphicModifications();
+  cube.applyGraphicModifications();
   console.log(cube.cube);
   combination.innerHTML = cube.generatedCombination.join(" ");
 });
