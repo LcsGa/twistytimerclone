@@ -151,12 +151,19 @@ export class RubikCube {
     const lastMove = this.generatedCombination[
       this.generatedCombination.length - 1
     ];
+    // this.modiffyLastMoves(move);
     if (lastMove === move) {
       this.generatedCombination.pop();
       this.generatedCombination.push(lastMove + "2");
-    } else if (lastMove !== undefined && lastMove[0] === move) {
+    } else if (
+      lastMove !== undefined &&
+      lastMove[0] === move &&
+      lastMove[1] == 2
+    ) {
       this.generatedCombination.pop();
       this.generatedCombination.push(lastMove[0] + "'");
+    } else if (lastMove !== undefined && lastMove[0] === move) {
+      this.generatedCombination.pop();
     } else {
       this.generatedCombination.push(move);
     }
@@ -169,6 +176,52 @@ export class RubikCube {
     if (lastMove !== undefined) {
       if (lastMove.length === 2) {
         return true;
+      }
+    }
+  }
+
+  twoLastMovesSameAxis() {
+    if (this.generatedCombination.length < 2) {
+      return;
+    }
+    const secondLastMove = this.generatedCombination[
+      this.generatedCombination.length - 2
+    ][0];
+    const lastMove = this.generatedCombination[
+      this.generatedCombination.length - 1
+    ][0];
+    const isUpDownAxis =
+      (secondLastMove === "U" && lastMove === "D") ||
+      (secondLastMove === "D" && lastMove === "U");
+    const isLeftRightAxis =
+      (secondLastMove === "L" && lastMove === "R") ||
+      (secondLastMove === "R" && lastMove === "L");
+    const isFrontBackAxis =
+      (secondLastMove === "F" && lastMove === "B") ||
+      (secondLastMove === "B" && lastMove === "F");
+
+    return isUpDownAxis || isLeftRightAxis || isFrontBackAxis ? true : false;
+  }
+
+  //! A tester
+  modiffyLastMoves(move) {
+    const secondLastMove = this.generatedCombination[
+      this.generatedCombination.length - 2
+    ];
+    if (this.twoLastMovesSameAxis() && move === secondLastMove[0]) {
+      if (secondLastMove.length === 2) {
+        if (secondLastMove[1] == 2) {
+          this.generatedCombination[this.generatedCombination.length - 2] =
+            move + "'";
+        } else {
+          this.generatedCombination.splice(
+            this.generatedCombination.length - 2,
+            1
+          );
+        }
+      } else {
+        this.generatedCombination[this.generatedCombination.length - 2] =
+          move + "2";
       }
     }
   }
