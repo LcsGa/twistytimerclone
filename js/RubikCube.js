@@ -42,44 +42,40 @@ export class RubikCube {
     this.rotatedFigure = {};
   }
 
-  // returns a new table of the figure's selected perimeter, depending on the move : eg. [00,01,02,10,11,12,20,21,22]
-  getFigurePerimeter(move) {
-    let figure;
+  selectedFigure(move) {
     switch (move) {
       case "U": {
-        figure = this.cube.top;
-        break;
+        return this.cube.top;
       }
       case "D": {
-        figure = this.cube.bottom;
-        break;
+        return this.cube.bottom;
       }
       case "L": {
-        figure = this.cube.left;
-        break;
+        return this.cube.left;
       }
       case "R": {
-        figure = this.cube.right;
-        break;
+        return this.cube.right;
       }
       case "F": {
-        figure = this.cube.front;
-        break;
+        return this.cube.front;
       }
       case "B": {
-        figure = this.cube.back;
-        break;
+        return this.cube.back;
       }
     }
+  }
+
+  // returns a new table of the figure's selected perimeter, depending on the move : eg. [00,01,02,10,11,12,20,21,22]
+  getFigurePerimeter(move) {
     return [
-      figure[0][0],
-      figure[0][1],
-      figure[0][2],
-      figure[1][2],
-      figure[2][2],
-      figure[2][1],
-      figure[2][0],
-      figure[1][0],
+      this.selectedFigure(move)[0][0],
+      this.selectedFigure(move)[0][1],
+      this.selectedFigure(move)[0][2],
+      this.selectedFigure(move)[1][2],
+      this.selectedFigure(move)[2][2],
+      this.selectedFigure(move)[2][1],
+      this.selectedFigure(move)[2][0],
+      this.selectedFigure(move)[1][0],
     ];
   }
 
@@ -289,33 +285,7 @@ export class RubikCube {
 
   // Function that has to be called (figure perimeter)
   applyFigurePerimeterRotationChangesWithinCubeObject(move) {
-    let figure;
-    switch (move[0]) {
-      case "U": {
-        figure = this.cube.top;
-        break;
-      }
-      case "D": {
-        figure = this.cube.bottom;
-        break;
-      }
-      case "L": {
-        figure = this.cube.left;
-        break;
-      }
-      case "R": {
-        figure = this.cube.right;
-        break;
-      }
-      case "F": {
-        figure = this.cube.front;
-        break;
-      }
-      case "B": {
-        figure = this.cube.back;
-        break;
-      }
-    }
+    let figure = this.selectedFigure(move[0]);
     figure[0] = [
       this.rotatedFigure.figurePerimeter[0],
       this.rotatedFigure.figurePerimeter[1],
