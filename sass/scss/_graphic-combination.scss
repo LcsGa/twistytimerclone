@@ -10,6 +10,7 @@
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     gap: 1px;
     border: 1px solid black;
+    border-radius: 2px;
   }
   #top {
     grid-column: 2/3;
@@ -26,17 +27,17 @@
   background: white;
 }
 .yellow {
-  background: yellow;
+  background: #f2f215;
 }
 .blue {
-  background: blue;
+  background: #1c5ffe;
 }
 .green {
-  background: green;
+  background: #58d568;
 }
 .red {
-  background: red;
+  background: #ed3030;
 }
 .orange {
-  background: orange;
+  background: #e89e15;
 }
