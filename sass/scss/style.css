@@ -65,6 +65,10 @@ header #game-mode p {
   border-radius: 2px;
 }
 
+#graphic-combination .square {
+  border-radius: 1px;
+}
+
 #graphic-combination #top {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
