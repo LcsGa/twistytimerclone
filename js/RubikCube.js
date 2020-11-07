@@ -88,56 +88,58 @@ export class RubikCube {
     return array;
   }
 
+  returnArray(move, line1, line2, column1, column2) {
+    switch (move) {
+      case "U":
+      case "D": {
+        return [
+          this.cube.left[line1],
+          this.cube.front[line1],
+          this.cube.right[line1],
+          this.cube.back[line1],
+        ];
+      }
+      case "L":
+      case "R": {
+        return [
+          this.getFigureColumn(this.cube.bottom, column1),
+          this.getFigureColumn(this.cube.front, column1),
+          this.getFigureColumn(this.cube.top, column1),
+          this.getFigureColumn(this.cube.back, column2).reverse(),
+        ];
+      }
+      case "F":
+      case "B": {
+        return [
+          this.getFigureColumn(this.cube.left, column1).reverse(),
+          this.cube.top[line1],
+          this.getFigureColumn(this.cube.right, column2),
+          this.cube.bottom[line2].reverse(),
+        ];
+      }
+    }
+  }
+
   // returns a new table of the line's selected perimeter, depending on the move : eg. [[00,01,02],[00,01,02],[00,01,02],[00,01,02]]
   getLinePerimeter(move) {
     switch (move) {
       case "U": {
-        return [
-          this.cube.left[0],
-          this.cube.front[0],
-          this.cube.right[0],
-          this.cube.back[0],
-        ];
+        return this.returnArray(move, 0, undefined, undefined, undefined);
       }
       case "D": {
-        return [
-          this.cube.left[2],
-          this.cube.front[2],
-          this.cube.right[2],
-          this.cube.back[2],
-        ];
+        return this.returnArray(move, 2, undefined, undefined, undefined);
       }
       case "L": {
-        return [
-          this.getFigureColumn(this.cube.bottom, 0),
-          this.getFigureColumn(this.cube.front, 0),
-          this.getFigureColumn(this.cube.top, 0),
-          this.getFigureColumn(this.cube.back, 2).reverse(),
-        ];
+        return this.returnArray(move, undefined, undefined, 0, 2);
       }
       case "R": {
-        return [
-          this.getFigureColumn(this.cube.bottom, 2),
-          this.getFigureColumn(this.cube.front, 2),
-          this.getFigureColumn(this.cube.top, 2),
-          this.getFigureColumn(this.cube.back, 0).reverse(),
-        ];
+        return this.returnArray(move, undefined, undefined, 2, 0);
       }
       case "F": {
-        return [
-          this.getFigureColumn(this.cube.left, 2).reverse(),
-          this.cube.top[2],
-          this.getFigureColumn(this.cube.right, 0),
-          this.cube.bottom[0].reverse(),
-        ];
+        return this.returnArray(move, 2, 0, 2, 0);
       }
       case "B": {
-        return [
-          this.getFigureColumn(this.cube.left, 0).reverse(),
-          this.cube.top[0],
-          this.getFigureColumn(this.cube.right, 2),
-          this.cube.bottom[2].reverse(),
-        ];
+        return this.returnArray(move, 0, 2, 0, 2);
       }
     }
   }
