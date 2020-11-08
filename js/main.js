@@ -1,4 +1,5 @@
 import { RubikCube } from "./RubikCube.js";
+import "./timer.js";
 
 const combination = document.querySelector("#combination p");
 const reloadBtn = document.querySelector(".fa-sync-alt");
