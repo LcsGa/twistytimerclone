@@ -2,6 +2,8 @@ const main = document.querySelector("main");
 const timerHTML = document.querySelector("#timer");
 let seconds = 0;
 let centiseconds = 0;
+let timerTimeout;
+let timerStarted = false;
 
 function timer() {
   centiseconds++;
@@ -12,7 +14,17 @@ function timer() {
   timerHTML.innerHTML = `<span>${seconds}</span>.${
     centiseconds < 10 ? 0 : ""
   }${centiseconds}`;
-  setTimeout(timer, 10);
+  timerTimeout = setTimeout(timer, 10);
 }
 
-main.addEventListener("click", timer);
+function startStopTimer() {
+  if (!timerStarted) {
+    timer();
+    timerStarted = true;
+  } else {
+    clearTimeout(timerTimeout);
+    timerStarted = false;
+  }
+}
+
+main.addEventListener("click", startStopTimer);
