@@ -9,6 +9,7 @@ main {
     align-items: flex-end;
     #combination {
       text-align: center;
+      font-size: clamp(1rem, 5vw, 3rem);
     }
     nav {
       @include y-centered-x-space-between;
@@ -17,20 +18,24 @@ main {
     }
   }
   #timer {
-    font-size: 4rem;
+    font-size: clamp(2rem, 15vw, 5rem);
     font-weight: bold;
     span {
-      font-size: 6rem;
+      font-size: clamp(3rem, 22.5vw, 7.5rem);
     }
   }
   #data {
     @include y-centered-x-space-between;
     width: 100%;
     section {
+      &:first-child {
+        margin-left: -1rem;
+      }
       &:nth-child(2n + 1) {
-        font-size: 1rem;
+        font-size: clamp(0.5rem, 3.5vw, 2rem);
       }
       &:last-child {
+        margin-right: -1rem;
         text-align: right;
       }
     }

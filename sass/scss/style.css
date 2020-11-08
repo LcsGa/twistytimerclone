@@ -30,7 +30,7 @@ header #game-mode select {
   background: none;
   border: none;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: clamp(1rem, 8vw, 3rem);
   outline: none;
   cursor: pointer;
   padding: 0 1rem;
@@ -38,7 +38,7 @@ header #game-mode select {
 
 header #game-mode p {
   text-align: center;
-  font-size: 1rem;
+  font-size: clamp(0.5rem, 3vw, 2rem);
   margin-bottom: -0.5rem;
 }
 
@@ -53,20 +53,20 @@ header #game-mode p {
 
 #graphic-combination .figure {
   background: black;
-  height: 30px;
-  width: 30px;
+  height: clamp(2rem, 8vw, 5rem);
+  width: clamp(2rem, 8vw, 5rem);
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: (1fr)[3];
   -ms-grid-columns: (1fr)[3];
       grid-template: repeat(3, 1fr)/repeat(3, 1fr);
-  gap: 1px;
-  border: 1px solid black;
-  border-radius: 2px;
+  gap: clamp(1px, 0.3vw, 2.5px);
+  border: clamp(1px, 0.3vw, 2.5px) solid black;
+  border-radius: clamp(2px, 0.6vw, 5px);
 }
 
 #graphic-combination .square {
-  border-radius: 1px;
+  border-radius: clamp(1px, 0.3vw, 2.5px);
 }
 
 #graphic-combination #top {
@@ -146,6 +146,7 @@ main #combination-article {
 
 main #combination-article #combination {
   text-align: center;
+  font-size: clamp(1rem, 5vw, 3rem);
 }
 
 main #combination-article nav {
@@ -163,12 +164,12 @@ main #combination-article nav {
 }
 
 main #timer {
-  font-size: 4rem;
+  font-size: clamp(2rem, 15vw, 5rem);
   font-weight: bold;
 }
 
 main #timer span {
-  font-size: 6rem;
+  font-size: clamp(3rem, 22.5vw, 7.5rem);
 }
 
 main #data {
@@ -184,11 +185,16 @@ main #data {
   width: 100%;
 }
 
+main #data section:first-child {
+  margin-left: -1rem;
+}
+
 main #data section:nth-child(2n + 1) {
-  font-size: 1rem;
+  font-size: clamp(0.5rem, 3.5vw, 2rem);
 }
 
 main #data section:last-child {
+  margin-right: -1rem;
   text-align: right;
 }
 
@@ -232,33 +238,18 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.5rem;
-}
-
-#app-container {
-  height: 100vh;
-  width: 500px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#3afbf8), to(#32f7c9));
-  background: linear-gradient(#3afbf8, #32f7c9);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background: -webkit-gradient(linear, left top, left bottom, from(#3afbf8), to(#32f7c9));
+  background: linear-gradient(#3afbf8, #32f7c9);
+  height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 i {
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: clamp(0.5rem, 7vw, 3rem);
 }
 /*# sourceMappingURL=style.css.map */
