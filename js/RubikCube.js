@@ -42,44 +42,40 @@ export class RubikCube {
     this.rotatedFigure = {};
   }
 
-  // returns a new table of the figure's selected perimeter, depending on the move : eg. [00,01,02,10,11,12,20,21,22]
-  getFigurePerimeter(move) {
-    let figure;
+  selectedFigure(move) {
     switch (move) {
       case "U": {
-        figure = this.cube.top;
-        break;
+        return this.cube.top;
       }
       case "D": {
-        figure = this.cube.bottom;
-        break;
+        return this.cube.bottom;
       }
       case "L": {
-        figure = this.cube.left;
-        break;
+        return this.cube.left;
       }
       case "R": {
-        figure = this.cube.right;
-        break;
+        return this.cube.right;
       }
       case "F": {
-        figure = this.cube.front;
-        break;
+        return this.cube.front;
       }
       case "B": {
-        figure = this.cube.back;
-        break;
+        return this.cube.back;
       }
     }
+  }
+
+  // returns a new table of the figure's selected perimeter, depending on the move : eg. [00,01,02,10,11,12,20,21,22]
+  getFigurePerimeter(move) {
     return [
-      figure[0][0],
-      figure[0][1],
-      figure[0][2],
-      figure[1][2],
-      figure[2][2],
-      figure[2][1],
-      figure[2][0],
-      figure[1][0],
+      this.selectedFigure(move)[0][0],
+      this.selectedFigure(move)[0][1],
+      this.selectedFigure(move)[0][2],
+      this.selectedFigure(move)[1][2],
+      this.selectedFigure(move)[2][2],
+      this.selectedFigure(move)[2][1],
+      this.selectedFigure(move)[2][0],
+      this.selectedFigure(move)[1][0],
     ];
   }
 
@@ -92,56 +88,58 @@ export class RubikCube {
     return array;
   }
 
+  returnArray(move, line1, line2, column1, column2) {
+    switch (move) {
+      case "U":
+      case "D": {
+        return [
+          this.cube.left[line1],
+          this.cube.front[line1],
+          this.cube.right[line1],
+          this.cube.back[line1],
+        ];
+      }
+      case "L":
+      case "R": {
+        return [
+          this.getFigureColumn(this.cube.bottom, column1),
+          this.getFigureColumn(this.cube.front, column1),
+          this.getFigureColumn(this.cube.top, column1),
+          this.getFigureColumn(this.cube.back, column2).reverse(),
+        ];
+      }
+      case "F":
+      case "B": {
+        return [
+          this.getFigureColumn(this.cube.left, column1).reverse(),
+          this.cube.top[line1],
+          this.getFigureColumn(this.cube.right, column2),
+          this.cube.bottom[line2].reverse(),
+        ];
+      }
+    }
+  }
+
   // returns a new table of the line's selected perimeter, depending on the move : eg. [[00,01,02],[00,01,02],[00,01,02],[00,01,02]]
   getLinePerimeter(move) {
     switch (move) {
       case "U": {
-        return [
-          this.cube.left[0],
-          this.cube.front[0],
-          this.cube.right[0],
-          this.cube.back[0],
-        ];
+        return this.returnArray(move, 0, undefined, undefined, undefined);
       }
       case "D": {
-        return [
-          this.cube.left[2],
-          this.cube.front[2],
-          this.cube.right[2],
-          this.cube.back[2],
-        ];
+        return this.returnArray(move, 2, undefined, undefined, undefined);
       }
       case "L": {
-        return [
-          this.getFigureColumn(this.cube.bottom, 0),
-          this.getFigureColumn(this.cube.front, 0),
-          this.getFigureColumn(this.cube.top, 0),
-          this.getFigureColumn(this.cube.back, 2).reverse(),
-        ];
+        return this.returnArray(move, undefined, undefined, 0, 2);
       }
       case "R": {
-        return [
-          this.getFigureColumn(this.cube.bottom, 2),
-          this.getFigureColumn(this.cube.front, 2),
-          this.getFigureColumn(this.cube.top, 2),
-          this.getFigureColumn(this.cube.back, 0).reverse(),
-        ];
+        return this.returnArray(move, undefined, undefined, 2, 0);
       }
       case "F": {
-        return [
-          this.getFigureColumn(this.cube.left, 2).reverse(),
-          this.cube.top[2],
-          this.getFigureColumn(this.cube.right, 0),
-          this.cube.bottom[0].reverse(),
-        ];
+        return this.returnArray(move, 2, 0, 2, 0);
       }
       case "B": {
-        return [
-          this.getFigureColumn(this.cube.left, 0).reverse(),
-          this.cube.top[0],
-          this.getFigureColumn(this.cube.right, 2),
-          this.cube.bottom[2].reverse(),
-        ];
+        return this.returnArray(move, 0, 2, 0, 2);
       }
     }
   }
@@ -267,7 +265,6 @@ export class RubikCube {
 
   // returns a new object with the changes applied on every move : {figurePerimeter: [], linePerimeter: []}
   applyFigureRotation(move) {
-    let repetition = 1;
     const figurePerimeter = this.getFigurePerimeter(move[0]);
     const linePerimeter = this.getLinePerimeter(move[0]);
 
@@ -285,8 +282,7 @@ export class RubikCube {
         break;
       }
     }
-    // }
-    for (let i = 0; i < 2 * repetition; i++) {
+    for (let i = 0; i < 2; i++) {
       figurePerimeter.unshift(figurePerimeter.pop());
     }
     return {
@@ -297,33 +293,7 @@ export class RubikCube {
 
   // Function that has to be called (figure perimeter)
   applyFigurePerimeterRotationChangesWithinCubeObject(move) {
-    let figure;
-    switch (move[0]) {
-      case "U": {
-        figure = this.cube.top;
-        break;
-      }
-      case "D": {
-        figure = this.cube.bottom;
-        break;
-      }
-      case "L": {
-        figure = this.cube.left;
-        break;
-      }
-      case "R": {
-        figure = this.cube.right;
-        break;
-      }
-      case "F": {
-        figure = this.cube.front;
-        break;
-      }
-      case "B": {
-        figure = this.cube.back;
-        break;
-      }
-    }
+    let figure = this.selectedFigure(move[0]);
     figure[0] = [
       this.rotatedFigure.figurePerimeter[0],
       this.rotatedFigure.figurePerimeter[1],

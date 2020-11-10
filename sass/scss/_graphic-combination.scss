@@ -4,16 +4,16 @@
   gap: 1px;
   .figure {
     background: black;
-    height: 30px;
-    width: 30px;
+    height: clamp(2rem, 8vw, 5rem);
+    width: clamp(2rem, 8vw, 5rem);
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-    gap: 1px;
-    border: 1px solid black;
-    border-radius: 2px;
+    gap: clamp(1px, 0.3vw, 2.5px);
+    border: clamp(1px, 0.3vw, 2.5px) solid black;
+    border-radius: clamp(2px, 0.6vw, 5px);
   }
   .square {
-    border-radius: 1px;
+    border-radius: clamp(1px, 0.3vw, 2.5px);
   }
   #top {
     grid-column: 2/3;

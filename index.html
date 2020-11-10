@@ -11,118 +11,116 @@
     <title>Twisty timer clone</title>
   </head>
   <body>
-    <div id="app-container">
-      <header>
-        <i class="fas fa-cog"></i>
-        <div id="game-mode">
-          <select id="select-game-mode">
-            <option value="3x3">Cube 3x3</option>
-          </select>
-          <p id="name">normal</p>
-        </div>
-        <i class="fas fa-shapes"></i>
-      </header>
-      <main>
-        <article id="combination-article">
-          <section id="combination">
-            <p></p>
-          </section>
-          <nav>
-            <i class="fas fa-plus-circle"></i>
-            <i class="fas fa-pencil-alt"></i>
-            <i class="fas fa-sync-alt"></i>
-          </nav>
-        </article>
-        <article id="timer"><span>0</span>.00</article>
-        <article id="data">
-          <section>
-            <p>Ecart-type : 1.41</p>
-            <p>Moyenne : 11.10</p>
-            <p>Meilleur : 4.90</p>
-            <p>Total : 14 766</p>
-          </section>
-          <section id="graphic-combination">
-            <div id="top" class="figure">
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-            </div>
-            <div id="left" class="figure">
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-            </div>
-            <div id="front" class="figure">
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-            </div>
-            <div id="right" class="figure">
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-            </div>
-            <div id="back" class="figure">
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-            </div>
-            <div id="bottom" class="figure">
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-              <div class="square"></div>
-            </div>
-          </section>
-          <section>
-            <p>Ao5 : 11.07</p>
-            <p>Ao12 : 10.28</p>
-            <p>Ao50 : 10.64</p>
-            <p>Ao100 : 10.69</p>
-          </section>
-        </article>
-      </main>
-      <footer>
-        <i class="fas fa-stopwatch selected"></i>
-        <i class="fas fa-list-alt"></i>
-        <i class="fas fa-chart-bar"></i>
-      </footer>
-    </div>
+    <header>
+      <i class="fas fa-cog"></i>
+      <div id="game-mode">
+        <select id="select-game-mode">
+          <option value="3x3">Cube 3x3</option>
+        </select>
+        <p id="name">normal</p>
+      </div>
+      <i class="fas fa-shapes"></i>
+    </header>
+    <main>
+      <article id="combination-article">
+        <section id="combination">
+          <p></p>
+        </section>
+        <nav>
+          <i class="fas fa-plus-circle"></i>
+          <i class="fas fa-pencil-alt"></i>
+          <i class="fas fa-sync-alt"></i>
+        </nav>
+      </article>
+      <article id="timer"><span>0</span>.00</article>
+      <article id="data">
+        <section>
+          <p>Ecart-type : 1.41</p>
+          <p>Moyenne : 11.10</p>
+          <p>Meilleur : 4.90</p>
+          <p>Total : 14 766</p>
+        </section>
+        <section id="graphic-combination">
+          <div id="top" class="figure">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div id="left" class="figure">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div id="front" class="figure">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div id="right" class="figure">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div id="back" class="figure">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+          <div id="bottom" class="figure">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+          </div>
+        </section>
+        <section>
+          <p>Ao5 : 11.07</p>
+          <p>Ao12 : 10.28</p>
+          <p>Ao50 : 10.64</p>
+          <p>Ao100 : 10.69</p>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <i class="fas fa-stopwatch selected"></i>
+      <i class="fas fa-list-alt"></i>
+      <i class="fas fa-chart-bar"></i>
+    </footer>
     <script type="module" src="./js/main.js"></script>
   </body>
 </html>
