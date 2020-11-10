@@ -146,12 +146,12 @@ export class RubikCube {
     }
   }
 
-  // Add 2 or ' depending on the last move : eg. (LL -> L2) and (L2L -> L')
+  // Add 2, ' or delete depending on the last move : eg. (LL -> L2), (L2L -> L') and (L'L => "")
   addMove(move) {
     const lastMove = this.generatedCombination[
       this.generatedCombination.length - 1
     ];
-    // this.modiffyLastMoves(move);
+    // this.modifyLastMoves(move);
     if (lastMove === move) {
       this.generatedCombination.pop();
       this.generatedCombination.push(lastMove + "2");
@@ -169,6 +169,7 @@ export class RubikCube {
     }
   }
 
+  // deprecated because of L'L => ""
   lastMoveLengthIsTwo() {
     const lastMove = this.generatedCombination[
       this.generatedCombination.length - 1
@@ -181,30 +182,29 @@ export class RubikCube {
   }
 
   twoLastMovesSameAxis() {
-    if (this.generatedCombination.length < 2) {
-      return;
-    }
-    const secondLastMove = this.generatedCombination[
-      this.generatedCombination.length - 2
-    ][0];
-    const lastMove = this.generatedCombination[
-      this.generatedCombination.length - 1
-    ][0];
-    const isUpDownAxis =
-      (secondLastMove === "U" && lastMove === "D") ||
-      (secondLastMove === "D" && lastMove === "U");
-    const isLeftRightAxis =
-      (secondLastMove === "L" && lastMove === "R") ||
-      (secondLastMove === "R" && lastMove === "L");
-    const isFrontBackAxis =
-      (secondLastMove === "F" && lastMove === "B") ||
-      (secondLastMove === "B" && lastMove === "F");
+    if (this.generatedCombination.length === 2) {
+      const secondLastMove = this.generatedCombination[
+        this.generatedCombination.length - 2
+      ][0];
+      const lastMove = this.generatedCombination[
+        this.generatedCombination.length - 1
+      ][0];
+      const isUpDownAxis =
+        (secondLastMove === "U" && lastMove === "D") ||
+        (secondLastMove === "D" && lastMove === "U");
+      const isLeftRightAxis =
+        (secondLastMove === "L" && lastMove === "R") ||
+        (secondLastMove === "R" && lastMove === "L");
+      const isFrontBackAxis =
+        (secondLastMove === "F" && lastMove === "B") ||
+        (secondLastMove === "B" && lastMove === "F");
 
-    return isUpDownAxis || isLeftRightAxis || isFrontBackAxis ? true : false;
+      return isUpDownAxis || isLeftRightAxis || isFrontBackAxis ? true : false;
+    }
   }
 
   //! A tester
-  modiffyLastMoves(move) {
+  modifyLastMoves(move) {
     const secondLastMove = this.generatedCombination[
       this.generatedCombination.length - 2
     ];
@@ -233,26 +233,32 @@ export class RubikCube {
       switch (Math.floor(Math.random() * 6)) {
         case 0: {
           this.addMove("U");
+          this.modifyLastMoves("U");
           break;
         }
         case 1: {
           this.addMove("D");
+          this.modifyLastMoves("D");
           break;
         }
         case 2: {
           this.addMove("L");
+          this.modifyLastMoves("L");
           break;
         }
         case 3: {
           this.addMove("R");
+          this.modifyLastMoves("R");
           break;
         }
         case 4: {
           this.addMove("F");
+          this.modifyLastMoves("F");
           break;
         }
         case 5: {
           this.addMove("B");
+          this.modifyLastMoves("B");
           break;
         }
       }
