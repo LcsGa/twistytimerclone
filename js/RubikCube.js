@@ -180,7 +180,7 @@ export class RubikCube {
   }
 
   twoLastMovesSameAxis() {
-    if (this.generatedCombination.length === 2) {
+    if (this.generatedCombination.length > 2) {
       const secondLastMove = this.generatedCombination[
         this.generatedCombination.length - 2
       ][0];
@@ -206,6 +206,7 @@ export class RubikCube {
     const secondLastMove = this.generatedCombination[
       this.generatedCombination.length - 2
     ];
+    console.log(this.twoLastMovesSameAxis());
     if (this.twoLastMovesSameAxis() && move === secondLastMove[0]) {
       if (secondLastMove.length === 2) {
         if (secondLastMove[1] == 2) {
