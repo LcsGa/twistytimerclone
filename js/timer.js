@@ -1,5 +1,6 @@
 const main = document.querySelector("main");
-const timerHTML = document.querySelector("#timer");
+const timerHTML = document.querySelector("#timer p");
+const resetIcon = document.querySelector("#timer i");
 let seconds = 0;
 let centiseconds = 0;
 let timerTimeout;
@@ -11,23 +12,26 @@ function timer() {
     seconds++;
     centiseconds = 0;
   }
-  timerHTML.innerHTML = `<p><span>${seconds}</span>.${
+  timerHTML.innerHTML = `<span>${seconds}</span>.${
     centiseconds < 10 ? 0 : ""
-  }${centiseconds}</p>`;
+  }${centiseconds}`;
   timerTimeout = setTimeout(timer, 10);
 }
 
 function startTimer() {
   timer();
   timerStarted = true;
+  resetIcon.style.display = "none";
 }
 
 function stopTimer() {
   clearTimeout(timerTimeout);
   timerStarted = false;
+  resetIcon.style.display = "block";
 }
 
 function startStopTimer() {
+  console.log(resetIcon);
   if (!timerStarted) {
     startTimer();
   } else {
@@ -39,9 +43,15 @@ export function resetTimer() {
   stopTimer();
   seconds = 0;
   centiseconds = 0;
-  timerHTML.innerHTML = `<p><span>${seconds}</span>.${
+  timerHTML.innerHTML = `<span>${seconds}</span>.${
     centiseconds < 10 ? 0 : ""
-  }${centiseconds}</p>`;
+  }${centiseconds}`;
+  resetIcon.style.display = "none";
 }
 
 main.addEventListener("click", startStopTimer);
+
+resetIcon.addEventListener("click", (e) => {
+  resetTimer();
+  e.stopPropagation();
+});

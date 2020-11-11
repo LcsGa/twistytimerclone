@@ -30,8 +30,17 @@ main {
     font-size: 4.3rem;
     font-weight: 600;
     letter-spacing: -0.15rem;
+    position: relative;
     span {
       font-size: 5.8rem;
+    }
+    i {
+      position: absolute;
+      top: 20%;
+      right: -15%;
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      display: none;
     }
   }
   #data {
