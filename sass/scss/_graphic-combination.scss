@@ -4,16 +4,13 @@
   gap: 1px;
   .figure {
     background: black;
-    height: clamp(2rem, 8vw, 5rem);
-    width: clamp(2rem, 8vw, 5rem);
+    height: 1.5rem;
+    width: 1.5rem;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
-    gap: clamp(1px, 0.3vw, 2.5px);
-    border: clamp(1px, 0.3vw, 2.5px) solid black;
-    border-radius: clamp(2px, 0.6vw, 5px);
-  }
-  .square {
-    border-radius: clamp(1px, 0.3vw, 2.5px);
+    gap: 1px;
+    border: 1px solid black;
+    border-radius: 1px;
   }
   #top {
     grid-column: 2/3;
@@ -33,14 +30,14 @@
   background: #f2f215;
 }
 .blue {
-  background: #1c5ffe;
+  background: #2e44f0;
 }
 .green {
-  background: #58d568;
+  background: #00d140;
 }
 .red {
-  background: #ed3030;
+  background: #de0500;
 }
 .orange {
-  background: #e89e15;
+  background: #fd9029;
 }

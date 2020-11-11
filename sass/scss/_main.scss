@@ -3,7 +3,10 @@
 main {
   @include x-centered-y-space-between-flexed-column;
   flex-grow: 1;
-  padding: 1rem 2rem;
+  padding: 0.4rem 1rem;
+  i {
+    font-size: 1rem;
+  }
   #combination-article {
     @include flexed-column;
     width: 100%;
@@ -11,36 +14,35 @@ main {
     #combination {
       width: 100%;
       text-align: center;
-      font-size: clamp(1rem, 5vw, 3rem);
+      font-size: 1.2rem;
+      font-weight: 600;
+      word-spacing: 0.1rem;
     }
     nav {
       @include y-centered-x-space-between;
       margin-top: 1rem;
-      width: 130px;
+      i:last-child {
+        margin-left: 1.5rem;
+      }
     }
   }
   #timer {
-    @include x-y-centered;
-    flex-grow: 1;
-    width: 100%;
-    font-size: clamp(2rem, 15vw, 5rem);
-    font-weight: bold;
+    font-size: 4.3rem;
+    font-weight: 600;
+    letter-spacing: -0.15rem;
     span {
-      font-size: clamp(3rem, 22.5vw, 7.5rem);
+      font-size: 5.8rem;
     }
   }
   #data {
     @include y-centered-x-space-between;
     width: 100%;
     section {
-      &:first-child {
-        margin-left: -1rem;
-      }
       &:nth-child(2n + 1) {
-        font-size: clamp(0.5rem, 3.5vw, 2rem);
+        font-size: 0.8rem;
+        line-height: 1rem;
       }
       &:last-child {
-        margin-right: -1rem;
         text-align: right;
       }
     }

@@ -2,7 +2,8 @@ header {
   @include y-centered-x-space-between;
   @include window;
   margin: 0.5rem;
-  padding: 1rem 1.5rem;
+  padding: 0.3rem 1rem;
+  border-radius: 1rem;
   #game-mode {
     @include flexed-column;
     select {
@@ -10,15 +11,14 @@ header {
       background: none;
       border: none;
       font-weight: bold;
-      font-size: clamp(1rem, 8vw, 3rem);
+      font-size: 1.2rem;
       outline: none;
       cursor: pointer;
       padding: 0 1rem;
     }
     p {
       text-align: center;
-      font-size: clamp(0.5rem, 3vw, 2rem);
-      margin-bottom: -0.5rem;
+      font-size: 0.8rem;
     }
   }
 }

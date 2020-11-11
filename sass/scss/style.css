@@ -10,9 +10,11 @@ header {
           justify-content: space-between;
   background: rgba(255, 240, 255, 0.2);
   border: 2px solid rgba(0, 0, 0, 0.05);
-  border-radius: 25px;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   margin: 0.5rem;
-  padding: 1rem 1.5rem;
+  padding: 0.3rem 1rem;
+  border-radius: 1rem;
 }
 
 header #game-mode {
@@ -30,7 +32,7 @@ header #game-mode select {
   background: none;
   border: none;
   font-weight: bold;
-  font-size: clamp(1rem, 8vw, 3rem);
+  font-size: 1.2rem;
   outline: none;
   cursor: pointer;
   padding: 0 1rem;
@@ -38,8 +40,7 @@ header #game-mode select {
 
 header #game-mode p {
   text-align: center;
-  font-size: clamp(0.5rem, 3vw, 2rem);
-  margin-bottom: -0.5rem;
+  font-size: 0.8rem;
 }
 
 #graphic-combination {
@@ -53,20 +54,16 @@ header #game-mode p {
 
 #graphic-combination .figure {
   background: black;
-  height: clamp(2rem, 8vw, 5rem);
-  width: clamp(2rem, 8vw, 5rem);
+  height: 1.5rem;
+  width: 1.5rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: (1fr)[3];
   -ms-grid-columns: (1fr)[3];
       grid-template: repeat(3, 1fr)/repeat(3, 1fr);
-  gap: clamp(1px, 0.3vw, 2.5px);
-  border: clamp(1px, 0.3vw, 2.5px) solid black;
-  border-radius: clamp(2px, 0.6vw, 5px);
-}
-
-#graphic-combination .square {
-  border-radius: clamp(1px, 0.3vw, 2.5px);
+  gap: 1px;
+  border: 1px solid black;
+  border-radius: 1px;
 }
 
 #graphic-combination #top {
@@ -96,19 +93,19 @@ header #game-mode p {
 }
 
 .blue {
-  background: #1c5ffe;
+  background: #2e44f0;
 }
 
 .green {
-  background: #58d568;
+  background: #00d140;
 }
 
 .red {
-  background: #ed3030;
+  background: #de0500;
 }
 
 .orange {
-  background: #e89e15;
+  background: #fd9029;
 }
 
 main {
@@ -128,7 +125,11 @@ main {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  padding: 1rem 2rem;
+  padding: 0.4rem 1rem;
+}
+
+main i {
+  font-size: 1rem;
 }
 
 main #combination-article {
@@ -148,7 +149,9 @@ main #combination-article {
 main #combination-article #combination {
   width: 100%;
   text-align: center;
-  font-size: clamp(1rem, 5vw, 3rem);
+  font-size: 1.2rem;
+  font-weight: 600;
+  word-spacing: 0.1rem;
 }
 
 main #combination-article nav {
@@ -162,29 +165,20 @@ main #combination-article nav {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-top: 1rem;
-  width: 130px;
+}
+
+main #combination-article nav i:last-child {
+  margin-left: 1.5rem;
 }
 
 main #timer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  width: 100%;
-  font-size: clamp(2rem, 15vw, 5rem);
-  font-weight: bold;
+  font-size: 4.3rem;
+  font-weight: 600;
+  letter-spacing: -0.15rem;
 }
 
 main #timer span {
-  font-size: clamp(3rem, 22.5vw, 7.5rem);
+  font-size: 5.8rem;
 }
 
 main #data {
@@ -200,16 +194,12 @@ main #data {
   width: 100%;
 }
 
-main #data section:first-child {
-  margin-left: -1rem;
-}
-
 main #data section:nth-child(2n + 1) {
-  font-size: clamp(0.5rem, 3.5vw, 2rem);
+  font-size: 0.8rem;
+  line-height: 1rem;
 }
 
 main #data section:last-child {
-  margin-right: -1rem;
   text-align: right;
 }
 
@@ -222,14 +212,16 @@ footer {
           align-items: center;
   background: rgba(255, 240, 255, 0.2);
   border: 2px solid rgba(0, 0, 0, 0.05);
-  border-radius: 25px;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.3);
   border-bottom: none;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  border-radius: 1.5rem;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  padding: 1rem 0;
+  padding: 0.7rem 0;
   width: 100%;
 }
 
@@ -247,6 +239,7 @@ footer .selected {
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -260,11 +253,10 @@ body {
   background: -webkit-gradient(linear, left top, left bottom, from(#3afbf8), to(#32f7c9));
   background: linear-gradient(#3afbf8, #32f7c9);
   height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 i {
   cursor: pointer;
-  font-size: clamp(0.5rem, 7vw, 3rem);
+  font-size: 1.3rem;
 }
 /*# sourceMappingURL=style.css.map */

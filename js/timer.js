@@ -17,14 +17,31 @@ function timer() {
   timerTimeout = setTimeout(timer, 10);
 }
 
+function startTimer() {
+  timer();
+  timerStarted = true;
+}
+
+function stopTimer() {
+  clearTimeout(timerTimeout);
+  timerStarted = false;
+}
+
 function startStopTimer() {
   if (!timerStarted) {
-    timer();
-    timerStarted = true;
+    startTimer();
   } else {
-    clearTimeout(timerTimeout);
-    timerStarted = false;
+    stopTimer();
   }
 }
 
-timerHTML.addEventListener("click", startStopTimer);
+export function resetTimer() {
+  stopTimer();
+  seconds = 0;
+  centiseconds = 0;
+  timerHTML.innerHTML = `<p><span>${seconds}</span>.${
+    centiseconds < 10 ? 0 : ""
+  }${centiseconds}</p>`;
+}
+
+main.addEventListener("click", startStopTimer);
