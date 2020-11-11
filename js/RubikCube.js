@@ -144,43 +144,8 @@ export class RubikCube {
     }
   }
 
-  // Add 2, ' or delete depending on the last move : eg. (LL -> L2), (L2L -> L') and (L'L => "")
-  addMove(move) {
-    const lastMove = this.generatedCombination[
-      this.generatedCombination.length - 1
-    ];
-    // this.modifyLastMoves(move);
-    if (lastMove === move) {
-      this.generatedCombination.pop();
-      this.generatedCombination.push(lastMove + "2");
-    } else if (
-      lastMove !== undefined &&
-      lastMove[0] === move &&
-      lastMove[1] == 2
-    ) {
-      this.generatedCombination.pop();
-      this.generatedCombination.push(lastMove[0] + "'");
-    } else if (lastMove !== undefined && lastMove[0] === move) {
-      this.generatedCombination.pop();
-    } else {
-      this.generatedCombination.push(move);
-    }
-  }
-
-  // deprecated because of L'L => ""
-  lastMoveLengthIsTwo() {
-    const lastMove = this.generatedCombination[
-      this.generatedCombination.length - 1
-    ];
-    if (lastMove !== undefined) {
-      if (lastMove.length === 2) {
-        return true;
-      }
-    }
-  }
-
   twoLastMovesSameAxis() {
-    if (this.generatedCombination.length > 2) {
+    if (this.generatedCombination.length >= 2) {
       const secondLastMove = this.generatedCombination[
         this.generatedCombination.length - 2
       ][0];
@@ -201,63 +166,80 @@ export class RubikCube {
     }
   }
 
-  //! A tester
-  modifyLastMoves(move) {
-    const secondLastMove = this.generatedCombination[
-      this.generatedCombination.length - 2
-    ];
-    console.log(this.twoLastMovesSameAxis());
-    if (this.twoLastMovesSameAxis() && move === secondLastMove[0]) {
-      if (secondLastMove.length === 2) {
-        if (secondLastMove[1] == 2) {
-          this.generatedCombination[this.generatedCombination.length - 2] =
-            move + "'";
-        } else {
+  modifyLastMove(moveToChange, ongoingMove, positionFromLast) {
+    this.doNotIncrement = true;
+
+    if (moveToChange.length === 2) {
+      switch (moveToChange[1]) {
+        case "2": {
           this.generatedCombination.splice(
-            this.generatedCombination.length - 2,
-            1
+            -positionFromLast,
+            1,
+            `${ongoingMove}'`
           );
+          break;
         }
-      } else {
-        this.generatedCombination[this.generatedCombination.length - 2] =
-          move + "2";
+        case "'": {
+          this.generatedCombination.splice(-positionFromLast, 1);
+          break;
+        }
       }
+    } else {
+      this.generatedCombination.splice(-positionFromLast, 1, `${ongoingMove}2`);
+    }
+  }
+
+  // Add 2, ' or delete depending on the last move : eg. (LL -> L2), (L2L -> L') and (L'L => "")
+  addMove(move) {
+    const lastMoves = {
+      penultimate: this.generatedCombination[
+        this.generatedCombination.length - 2
+      ],
+      last: this.generatedCombination[this.generatedCombination.length - 1],
+    };
+
+    if (lastMoves.last !== undefined && lastMoves.last[0] === move) {
+      this.modifyLastMove(lastMoves.last, move, 1);
+    } else if (
+      lastMoves.penultimate !== undefined &&
+      this.twoLastMovesSameAxis() &&
+      lastMoves.penultimate[0] === move
+    ) {
+      this.modifyLastMove(lastMoves.penultimate, move, 2);
+    } else {
+      this.generatedCombination.push(move);
+      this.doNotIncrement = false;
     }
   }
 
   generateTextualCombination() {
+    this.doNotIncrement = false;
     this.generatedCombination = [];
     for (let i = 0; i < Math.ceil(20 + Math.random() * 6); i++) {
-      this.lastMoveLengthIsTwo() ? i-- : i;
+      this.doNotIncrement ? i-- : i;
       switch (Math.floor(Math.random() * 6)) {
         case 0: {
           this.addMove("U");
-          this.modifyLastMoves("U");
           break;
         }
         case 1: {
           this.addMove("D");
-          this.modifyLastMoves("D");
           break;
         }
         case 2: {
           this.addMove("L");
-          this.modifyLastMoves("L");
           break;
         }
         case 3: {
           this.addMove("R");
-          this.modifyLastMoves("R");
           break;
         }
         case 4: {
           this.addMove("F");
-          this.modifyLastMoves("F");
           break;
         }
         case 5: {
           this.addMove("B");
-          this.modifyLastMoves("B");
           break;
         }
       }
