@@ -1,6 +1,7 @@
 import { RubikCube } from "./RubikCube.js";
 import "./timer.js";
 import { resetTimer } from "./timer.js";
+import "./viewport_height.js";
 
 const combination = document.querySelector("#combination p");
 const reloadBtn = document.querySelector(".fa-sync-alt");

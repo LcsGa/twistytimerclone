@@ -19,7 +19,6 @@
 body {
   @include flexed-column;
   background: linear-gradient($lightblue, $seagreen);
-  height: 100vh;
 }
 
 i {
