@@ -11,9 +11,9 @@ function timer() {
     seconds++;
     centiseconds = 0;
   }
-  timerHTML.innerHTML = `<p><span>${seconds}</span>.${
+  timerHTML.innerHTML = `<span>${seconds}</span>.${
     centiseconds < 10 ? 0 : ""
-  }${centiseconds}</p>`;
+  }${centiseconds}`;
   timerTimeout = setTimeout(timer, 10);
 }
 
@@ -27,4 +27,4 @@ function startStopTimer() {
   }
 }
 
-timerHTML.addEventListener("click", startStopTimer);
+main.addEventListener("click", startStopTimer);

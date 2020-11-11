@@ -7,11 +7,12 @@ const reloadBtn = document.querySelector(".fa-sync-alt");
 let cube = new RubikCube();
 cube.applyGraphicModifications();
 
-reloadBtn.addEventListener("click", () => {
+reloadBtn.addEventListener("click", (e) => {
   if (cube.generatedCombination !== undefined) {
     cube = new RubikCube();
   }
   cube.applyChangesWithinCubeObject();
   cube.applyGraphicModifications();
   combination.innerHTML = cube.generatedCombination.join(" ");
+  e.stopPropagation();
 });

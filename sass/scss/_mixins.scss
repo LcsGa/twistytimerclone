@@ -7,11 +7,6 @@
   align-items: center;
 }
 
-@mixin x-centered {
-  @include flexed;
-  justify-content: center;
-}
-
 @mixin x-y-centered {
   @include y-centered;
   justify-content: center;
