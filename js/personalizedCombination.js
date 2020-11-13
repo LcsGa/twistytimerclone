@@ -8,6 +8,7 @@ const input = document.querySelector("input");
 
 buttons.openDialog.addEventListener("click", (e) => {
   dialog.style.display = "block";
+  input.focus();
   e.stopPropagation();
 });
 
