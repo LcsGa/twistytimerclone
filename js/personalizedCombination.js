@@ -3,18 +3,22 @@ const buttons = {
   cancel: document.querySelector("#cancel"),
   done: document.querySelector("#done"),
 };
-const dialog = document.querySelector("#dialog");
+const dialogWindow = document.querySelector("#dialog-window");
+const form = document.querySelector("form");
 const input = document.querySelector("input");
 
+// All the code below______________________________________________________________
+form.addEventListener("click", (e) => e.stopPropagation());
+
+dialogWindow.addEventListener("click", (e) => onDialogButtonClicked(e));
+
 buttons.openDialog.addEventListener("click", (e) => {
-  dialog.style.display = "block";
+  dialogWindow.style.display = "block";
   input.focus();
   e.stopPropagation();
 });
 
-buttons.cancel.addEventListener("click", (e) => {
-  onDialogButtonClicked(e);
-});
+buttons.cancel.addEventListener("click", (e) => onDialogButtonClicked(e));
 
 buttons.done.addEventListener("click", (e) => {
   // func() add the combanition and upload it
@@ -22,7 +26,7 @@ buttons.done.addEventListener("click", (e) => {
 });
 
 function onDialogButtonClicked(e) {
-  dialog.style.display = "none";
+  dialogWindow.style.display = "none";
   input.value = "";
   e.preventDefault();
   e.stopPropagation();

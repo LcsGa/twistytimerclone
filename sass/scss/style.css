@@ -239,8 +239,16 @@ footer .selected {
   color: #f0264c;
 }
 
-#dialog {
+#dialog-window {
   display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+#dialog-window form {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -255,7 +263,7 @@ footer .selected {
           box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
 }
 
-#dialog form label {
+#dialog-window form label {
   color: black;
   font-weight: bold;
   font-size: 1.2rem;
@@ -265,7 +273,7 @@ footer .selected {
   padding: 0 3rem 3rem;
 }
 
-#dialog form input {
+#dialog-window form input {
   color: #727272;
   text-transform: uppercase;
   font-size: 0.8rem;
@@ -279,7 +287,7 @@ footer .selected {
   margin-bottom: 2rem;
 }
 
-#dialog form #buttons {
+#dialog-window form #buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -288,7 +296,7 @@ footer .selected {
           justify-content: flex-end;
 }
 
-#dialog form #buttons button {
+#dialog-window form #buttons button {
   background: none;
   border: none;
   outline: none;
@@ -296,7 +304,7 @@ footer .selected {
   font-weight: 600;
 }
 
-#dialog form #buttons #done {
+#dialog-window form #buttons #done {
   color: #3a69e4;
   margin-left: 1.5rem;
 }
