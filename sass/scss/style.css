@@ -8,10 +8,10 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background: rgba(255, 240, 255, 0.2);
   border: 2px solid rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 240, 255, 0.2);
   margin: 0.5rem;
   padding: 0.3rem 1rem;
   border-radius: 1rem;
@@ -220,10 +220,10 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: rgba(255, 240, 255, 0.2);
   border: 2px solid rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 240, 255, 0.2);
   color: rgba(0, 0, 0, 0.3);
   border-bottom: none;
   border-bottom-left-radius: 0;
@@ -237,6 +237,68 @@ footer {
 
 footer .selected {
   color: #f0264c;
+}
+
+#dialog {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  background: white;
+  width: 88%;
+  padding: 1.7rem 1.5rem 1.2rem;
+  -webkit-box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
+          box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
+}
+
+#dialog form label {
+  color: black;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  padding: 0 3rem 3rem;
+}
+
+#dialog form input {
+  color: #727272;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: none;
+  border-bottom: 3px solid #f0264c;
+  width: 100%;
+  outline: none;
+  caret-color: #f0264c;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+#dialog form #buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+#dialog form #buttons button {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#dialog form #buttons #done {
+  color: #3a69e4;
+  margin-left: 1.5rem;
 }
 
 :root {

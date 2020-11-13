@@ -1,0 +1,49 @@
+#dialog {
+  display: none;
+  @include absolute-centered;
+  @include window-border;
+  border-radius: 15px;
+  background: white;
+  width: 88%;
+  padding: 1.7rem 1.5rem 1.2rem;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
+  form {
+    label {
+      color: black;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+      padding: 0 3rem 3rem;
+    }
+    input {
+      color: #727272;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      border-bottom: 3px solid $red;
+      width: 100%;
+      outline: none;
+      caret-color: $red;
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    #buttons {
+      @include flexed;
+      justify-content: flex-end;
+      button {
+        background: none;
+        border: none;
+        outline: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      #done {
+        color: #3a69e4;
+        margin-left: 1.5rem;
+      }
+    }
+  }
+}
