@@ -380,7 +380,6 @@ export class RubikCube {
 
   // The application of the two previous functions (Like commented before)
   applyChangesWithinCubeObject() {
-    this.generateTextualCombination();
     for (const move of this.generatedCombination) {
       let repetition;
       repetition = this.repetitions(move);

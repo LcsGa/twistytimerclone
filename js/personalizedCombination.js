@@ -1,13 +1,13 @@
-const buttons = {
+export const buttons = {
   openDialog: document.querySelector(".fa-pencil-alt"),
   cancel: document.querySelector("#cancel"),
   done: document.querySelector("#done"),
 };
 const dialogWindow = document.querySelector("#dialog-window");
 const form = document.querySelector("form");
-const input = document.querySelector("input");
+export const input = document.querySelector("input");
 
-// All the code below______________________________________________________________
+// Event listeners_____________________________________________________________
 form.addEventListener("click", (e) => e.stopPropagation());
 
 dialogWindow.addEventListener("click", (e) => onDialogButtonClicked(e));
@@ -20,12 +20,16 @@ buttons.openDialog.addEventListener("click", (e) => {
 
 buttons.cancel.addEventListener("click", (e) => onDialogButtonClicked(e));
 
-buttons.done.addEventListener("click", (e) => {
-  // func() add the combanition and upload it
-  onDialogButtonClicked(e);
+window.addEventListener("keydown", (e) => {
+  if (dialogWindow.style.display === "block") {
+    if (e.key === "Enter") {
+      addPersonalizedCombination();
+    }
+  }
 });
 
-function onDialogButtonClicked(e) {
+// Functions___________________________________________________________________
+export function onDialogButtonClicked(e) {
   dialogWindow.style.display = "none";
   input.value = "";
   e.preventDefault();
