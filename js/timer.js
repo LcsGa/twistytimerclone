@@ -49,7 +49,11 @@ export function resetTimer() {
   resetIcon.style.display = "none";
 }
 
-main.addEventListener("click", startStopTimer);
+main.addEventListener("click", () => {
+  seconds !== 0 && centiseconds !== 0 && !timerStarted
+    ? resetTimer()
+    : startStopTimer();
+});
 
 resetIcon.addEventListener("click", (e) => {
   resetTimer();
