@@ -31,7 +31,6 @@ function stopTimer() {
 }
 
 function startStopTimer() {
-  console.log(resetIcon);
   if (!timerStarted) {
     startTimer();
   } else {
