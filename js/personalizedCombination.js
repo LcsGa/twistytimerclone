@@ -1,3 +1,5 @@
+import { addPersonalizedCombination } from "./main.js";
+
 export const buttons = {
   openDialog: document.querySelector(".fa-pencil-alt"),
   cancel: document.querySelector("#cancel"),
@@ -23,7 +25,7 @@ buttons.cancel.addEventListener("click", (e) => onDialogButtonClicked(e));
 window.addEventListener("keydown", (e) => {
   if (dialogWindow.style.display === "block") {
     if (e.key === "Enter") {
-      addPersonalizedCombination();
+      addPersonalizedCombination(e);
     }
   }
 });

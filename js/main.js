@@ -14,7 +14,7 @@ const combination = document.querySelector("#combination p");
 const reloadBtn = document.querySelector(".fa-sync-alt");
 let cube = new RubikCube();
 
-// Init function_______________________________________________________________
+// Functions___________________________________________________________________
 function initCombination(personnalizedCombination = false) {
   cube = new RubikCube();
   if (!personnalizedCombination) {
@@ -28,6 +28,16 @@ function initCombination(personnalizedCombination = false) {
   combination.innerHTML = cube.generatedCombination.join(" ");
 }
 
+export function addPersonalizedCombination(e) {
+  if (input.value !== "") {
+    initCombination(true);
+    resetTimer();
+  }
+  e.stopPropagation();
+  onDialogButtonClicked(e);
+}
+
+// Init one combination on app load____________________________________________
 initCombination();
 
 // Event listeners_____________________________________________________________
@@ -38,10 +48,5 @@ reloadBtn.addEventListener("click", (e) => {
 });
 
 buttons.done.addEventListener("click", (e) => {
-  if (input.value !== "") {
-    initCombination(true);
-    resetTimer();
-  }
-  e.stopPropagation();
-  onDialogButtonClicked(e);
+  addPersonalizedCombination(e);
 });
