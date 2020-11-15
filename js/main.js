@@ -22,6 +22,20 @@ function initCombination(personnalizedCombination = false) {
   } else {
     combination.innerHTML = input.value.toUpperCase();
     cube.generatedCombination = combination.innerHTML.split(" ");
+    for (const move of cube.generatedCombination) {
+      if (
+        (move[0] !== "U" &&
+          move[0] !== "D" &&
+          move[0] !== "L" &&
+          move[0] !== "R" &&
+          move[0] !== "F" &&
+          move[0] !== "B") ||
+        move.length > 2 ||
+        (move[1] !== undefined && move[1] !== "'" && move[1] != 2)
+      ) {
+        window.location.reload();
+      }
+    }
   }
   cube.applyChangesWithinCubeObject();
   cube.applyGraphicModifications();
